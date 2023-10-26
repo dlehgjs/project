@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+*{
+	margin: 0px;
+    padding: 0px;
+	list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+}
+
+.header{
+	width: 1200px;
+	height: 90px;
+	margin: auto;
+	display: flex;
+	background: greenyellow;
+	flex-wrap: wrap;
+   
+
+}
+
+.logo{
+	
+	width: 100px;
+	margin-left: 10px;
+}
+.logo > img {
+
+    width: 100px;
+    height: 80px;
+    margin-top: 5px;
+}
+.searchArea{
+	
+	margin-top: 15px;
+	width: 280px;
+	height: 60px;
+		
+}
+
+.rightDiv{
+    display: flex;
+    width: 810px;
+    height: 90px;
+    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+
+}
+
+.nav{
+	display: flex;
+	justify-content: flex-end;
+    height: 45px;
+	align-items: center;
+	width: 810px;
+	padding-left: 0px;
+}
+.userinfo {
+
+    display: flex;
+	justify-content: flex-end;
+    align-items: center;
+    height: 50%;
+    width: 810px;
+}
+.nav > li {
+	
+	width: 120px;
+	text-align: center;
+	
+}
+.display {
+	
+	display: flex;
+	width : 1200px;
+	
+}
+.aside {
+	
+	width: 250px;
+	background: gray;
+	height: 600px;
+	
+}
+.article {
+	
+	width: 950px;
+	height: 600px;
+	
+	
+}
+.article > form {
+	
+	margin-top : 30px;
+	margin-left : 50px;
+	
+}
+.footer-wrap {
+	
+	display : flex;
+	margin : auto;
+	width: 1200px;
+	height: 90px;
+	background: green;
+		
+}
+
+.productlist , .orderlist {
+	
+	margin-left: 50px;
+	
+}
+
+table, th, tr, td {
+	
+	font-size: 12px;
+	border: 1px solid;
+	padding: 0px 15px 0px 15px;
+	text-align : center;
+}
+
+.side_nav {
+	
+	margin: 30px;
+	
+	
+}
+
+.pagebar {
+	
+	text-align : center;
+	
+}
+
+table > tr > th{
+	
+	background: greenyellow;
+	
+}
