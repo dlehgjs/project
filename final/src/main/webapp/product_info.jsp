@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="DTO.Productbean"%>
 <%@ page import="DAO.ProductDAO"%>
+<%@ page import="DAO.Orderutil"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,15 @@
 </head>
 <body>
 <%
-String mem_num = Integer.toString((int) session.getAttribute("mem_num"));
+Orderutil ou = new Orderutil();
+
+
+session.setAttribute("ordercode", ou.getOrderCode());
+
+String ocode = (String) session.getAttribute("ordercode");
+
+String mem_num = String.valueOf(session.getAttribute("mem_num"));
+
 String userID = (String) session.getAttribute("mem_id");
 String num = request.getParameter("pro_num");
 
@@ -53,8 +62,10 @@ String pro_pdate=pbean.getPro_pdate();
 			<%if(mem_num != null){ %>
 			<input type="hidden" name="mem_num" value="mem_num">
 			<%} %>
+			<input type="hidden" name="ordercode" value="<%=ocode%>">
 			<input type="hidden" name="pro_num" value="<%=pro_num%>">
 			<input type="number" name="cart_amount" min="1" max="100" value="1">
+			<input type="submit">
 		</form>
 		<%}else{ %>
 			<span>품절</span>
