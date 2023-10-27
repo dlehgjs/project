@@ -33,7 +33,7 @@ ArrayList<Productbean> list = pdao.userHotList(search);
 			%>
 		
 		<div class="col">	
-			<div class="card" style="width: 11rem;" onclick='window.location.href="product_info.jsp"'>
+			<div class="card" style="width: 11rem;" onclick='window.location.href="product_info.jsp?pro_num=<%=pro_num%>"'>
 			  <img src="<%=request.getContextPath()%>/upfile/<%=pro_imgName%>" class="card-img-top" alt="...">
 			  <div class="card-body">
 			    <h5 class="card-title"><%=pro_name%></h5>

@@ -12,22 +12,21 @@ import DTO.Cartbean;
 
 public class CartDAO {
 	
-	public ArrayList<Cartbean> getCartList() {
+	public ArrayList<Cartbean> getCartList(int num) {
 
 		Connection conn = null;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 
-		
+
 		ArrayList<Cartbean> list = new ArrayList<Cartbean>();
 
 		try {
-
 			
 			conn = DBcon.getConnection();
 			String sql = null;
 							
-				sql = "select * from cart";
+				sql = "select * from cart where mem_num="+num;
 				
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
@@ -40,13 +39,14 @@ public class CartDAO {
 				cbean.setPro_num(rs.getInt("pro_num"));
 				cbean.setMem_num(rs.getInt("mem_num"));
 				cbean.setCart_amount(rs.getInt("cart_amount"));
+				cbean.setCart_date(rs.getString("cart_date"));
 
 				list.add(cbean);
 			}
 			
 			
 		} catch (SQLException ex) {
-			System.out.println("product 조회가 실패했습니다.");
+			System.out.println("cart 조회가 실패했습니다.");
 			System.out.println("SQLException: " + ex.getMessage());
 			throw new RuntimeException(ex.getMessage());
 		} catch (ClassNotFoundException cnfe) {
@@ -77,24 +77,28 @@ public class CartDAO {
 	public int getCartProduct(int mem_num,int pro_num) {
 				
 		Connection con = null;
-		int rs = 0;
+		ResultSet rs = null;
+		int cnt = 0;
 		PreparedStatement pstmt = null;
-		
 
 		
 		try {
 
 			con = DBcon.getConnection();
-
+			
 			String sql = null;
 	
 			sql = "Select cart_num from cart where mem_num='%"+mem_num+"%' and pro_num='%"+pro_num+"%'";
 	
 			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeUpdate();
-
-
-		//System.out.println(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				cnt = rs.getInt(1);
+				
+			}
 
 		} catch (SQLException ex) {
 
@@ -125,7 +129,8 @@ public class CartDAO {
 
 		}
 		
-		return rs;
+		System.out.println(cnt);
+		return cnt;
 		
 	}
 	
@@ -154,7 +159,7 @@ public class CartDAO {
 
 		if(cart_num !=0) {
 
-			sql = "UPDATE Cart SET cart_amount = cart_amount+?, cart_date=NOW() WHERE cart_num=?";
+			sql = "UPDATE cart SET cart_amount = cart_amount+?, cart_date=NOW() WHERE cart_num=?";
 	
 			pstmt = con.prepareStatement(sql);
 			
@@ -165,7 +170,7 @@ public class CartDAO {
 
 		}else{
 
-			sql = "INSERT INTO Cart VALUES (null,?,?,?,NOW()) ";
+			sql = "INSERT INTO cart VALUES (null,?,?,?,NOW()) ";
 	
 			pstmt = con.prepareStatement(sql);
 	

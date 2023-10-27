@@ -18,7 +18,7 @@
                         <a class="btn btn-outline-dark" href="user_logout.jsp" role="button">로그아웃</a>
                     </li>
                     <li class = "h_button">
-                        <a class="btn btn-outline-dark" href="#" role="button">장바구니</a>
+                        <a class="btn btn-outline-dark" href="user_cart.jsp" role="button">장바구니</a>
                     </li>
                 </ul>
         </nav>

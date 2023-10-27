@@ -17,17 +17,16 @@
 </head>
 <body>
 <%
-Orderutil ou = new Orderutil();
-
-
-session.setAttribute("ordercode", ou.getOrderCode());
-
-String ocode = (String) session.getAttribute("ordercode");
 
 String mem_num = String.valueOf(session.getAttribute("mem_num"));
-
 String userID = (String) session.getAttribute("mem_id");
 String num = request.getParameter("pro_num");
+
+Orderutil ou = new Orderutil();
+
+String getCookie = ou.ranCookie();
+
+
 
 ProductDAO pdao = new ProductDAO();
 
@@ -60,9 +59,9 @@ String pro_pdate=pbean.getPro_pdate();
 		<%if(pro_stock > 0){%>
 		<form action="insert_cart.jsp" method="post">
 			<%if(mem_num != null){ %>
-			<input type="hidden" name="mem_num" value="mem_num">
+			<input type="hidden" name="mem_num" value="<%=mem_num%>">
 			<%} %>
-			<input type="hidden" name="ordercode" value="<%=ocode%>">
+			<input type="hidden" name="basket" value="<%=getCookie%>">
 			<input type="hidden" name="pro_num" value="<%=pro_num%>">
 			<input type="number" name="cart_amount" min="1" max="100" value="1">
 			<input type="submit">

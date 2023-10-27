@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="DAO.Orderutil"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +16,7 @@
 <body>
 <%
 String userID = (String) session.getAttribute("mem_id");
-
+String mem_num = String.valueOf(session.getAttribute("mem_num"));
 %>
 <div class = "main_wrap">
 
