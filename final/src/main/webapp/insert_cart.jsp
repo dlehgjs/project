@@ -13,6 +13,7 @@
 <%
 request.setCharacterEncoding("utf-8");
 //한글 처리
+
 int mem_num = Integer.parseInt(request.getParameter("mem_num"));
 int pro_num = Integer.parseInt(request.getParameter("pro_num"));
 int cart_amount = Integer.parseInt(request.getParameter("cart_amount"));

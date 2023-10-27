@@ -88,7 +88,7 @@ public class CartDAO {
 			
 			String sql = null;
 	
-			sql = "Select cart_num from cart where mem_num='%"+mem_num+"%' and pro_num='%"+pro_num+"%'";
+			sql = "Select cart_num from cart where mem_num="+mem_num+" and pro_num="+pro_num;
 	
 			pstmt = con.prepareStatement(sql);
 			
@@ -99,6 +99,7 @@ public class CartDAO {
 				cnt = rs.getInt(1);
 				
 			}
+			
 
 		} catch (SQLException ex) {
 
@@ -129,7 +130,7 @@ public class CartDAO {
 
 		}
 		
-		System.out.println(cnt);
+		
 		return cnt;
 		
 	}

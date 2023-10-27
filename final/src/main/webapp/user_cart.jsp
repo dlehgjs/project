@@ -20,6 +20,7 @@
 	String userID = (String) session.getAttribute("mem_id");
 	int num = (int) session.getAttribute("mem_num");
 	
+	
 	CartDAO cdao = new CartDAO();
 	ArrayList<Cartbean> list = cdao.getCartList(num);
 	
