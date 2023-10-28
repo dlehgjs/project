@@ -22,13 +22,8 @@ String mem_num = String.valueOf(session.getAttribute("mem_num"));
 String userID = (String) session.getAttribute("mem_id");
 String num = request.getParameter("pro_num");
 
-Orderutil ou = new Orderutil();
 
-String getCookie = ou.ranCookie();
 
-Cookie cookie =new Cookie("basket", num);
-
-response.addCookie(cookie);
 
 ProductDAO pdao = new ProductDAO();
 
@@ -58,12 +53,12 @@ String pro_pdate=pbean.getPro_pdate();
 		<div class = "order-group">
 		<h1><%=pro_num%></h1>
 		<h1><%=pro_name%></h1>
+		<h1><%=pro_price %></h1>
 		<%if(pro_stock > 0){%>
-		<form action="cart_cookie.jsp" method="post">
+		<form action="insert_cart.jsp" method="post">
 			<%if(mem_num != null){ %>
 			<input type="hidden" name="mem_num" value="<%=mem_num%>">
 			<%} %>
-			<input type="hidden" name="basket" value="<%=pro_num%>">
 			<input type="hidden" name="pro_num" value="<%=pro_num%>">
 			<input type="number" name="cart_amount" min="1" max="100" value="1">
 			<input type="submit">

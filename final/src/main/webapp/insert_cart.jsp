@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="DTO.Cartbean"%>
 <%@ page import="DAO.CartDAO"%>
+<%@ page import="DTO.Productbean"%>
+<%@ page import="DAO.ProductDAO"%>
 <jsp:useBean id="cbean" class="DTO.Cartbean"/>	
 <!DOCTYPE html>
 <html>
@@ -26,6 +28,10 @@ CartDAO cdao = new CartDAO();
 
 int getCart = cdao.insertCart(cbean);
 %>
+
+<script>
+location.href="user_cart.jsp"
+</script>
 </body>
 </html>
 </body>

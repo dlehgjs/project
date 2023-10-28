@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="DTO.Cartbean"%>
 <%@ page import="DAO.CartDAO"%>
+<%@ page import="DTO.Productbean"%>
+<%@ page import="DAO.ProductDAO"%>
+
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -18,11 +21,12 @@
 <body>
 <%
 	String userID = (String) session.getAttribute("mem_id");
-	int num = (int) session.getAttribute("mem_num");
-	
+	int mnum = (int) session.getAttribute("mem_num");
+	String num = request.getParameter("pro_num");
 	
 	CartDAO cdao = new CartDAO();
-	ArrayList<Cartbean> list = cdao.getCartList(num);
+	ArrayList<Cartbean> list = cdao.getCartList(mnum);
+	
 	
 	for(Cartbean cbean : list){
 		
@@ -32,8 +36,21 @@
 		int cart_amount = cbean.getCart_amount();
 		String cart_date = cbean.getCart_date();
 		
-		
 	}
+	
+	ProductDAO pdao = new ProductDAO();
+	Productbean pbean = pdao.productInfo(num);
+	
+	int pro_num=pbean.getPro_num();
+	String pro_name=pbean.getPro_name();
+	int pro_price=pbean.getPro_price();
+	int pro_stock=pbean.getPro_stock();
+	String pro_imgName=pbean.getPro_imgName();
+	String pro_explain=pbean.getPro_explain();
+	String pro_hot=pbean.getPro_hot();
+	String pro_new=pbean.getPro_new();
+	String pro_display=pbean.getPro_display();
+	String pro_pdate=pbean.getPro_pdate();
 
 %>
 <div class = "main_wrap">
@@ -43,7 +60,8 @@
 <%@ include file="user_login_top1.jsp"%>
 <%} %>
 <div class = "cart_wrap">
-	
+	<img src="<%=request.getContextPath()%>/upfile/<%=pro_imgName%>" width="50" height="30"/>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
