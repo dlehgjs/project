@@ -26,7 +26,8 @@ public class CartDAO {
 			conn = DBcon.getConnection();
 			String sql = null;
 							
-				sql = "select * from cart where mem_num="+num;
+				sql = "select c.cart_num, c.cart_date, m.mem_num, p.pro_num, p.pro_imgName, p.pro_name, p.pro_price, c.cart_amount from cart as c join member as m\n"
+						+ "on m.mem_num = c.mem_num join product as p on p.pro_num = c.pro_num where m.mem_num="+num;
 				
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery(sql);
@@ -40,7 +41,11 @@ public class CartDAO {
 				cbean.setMem_num(rs.getInt("mem_num"));
 				cbean.setCart_amount(rs.getInt("cart_amount"));
 				cbean.setCart_date(rs.getString("cart_date"));
-
+				cbean.setPro_imgName(rs.getString("pro_imgName"));
+				cbean.setPro_name(rs.getString("pro_name"));
+				cbean.setPro_price(rs.getInt("pro_price"));
+				
+				
 				list.add(cbean);
 			}
 			

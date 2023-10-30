@@ -7,7 +7,29 @@ public class Cartbean {
 	private int pro_num;
 	private int cart_amount;
 	private String cart_date;
+	private String pro_imgName;
+	private String pro_name;
+	private int pro_price;
 	
+	
+	public String getPro_imgName() {
+		return pro_imgName;
+	}
+	public String getPro_name() {
+		return pro_name;
+	}
+	public int getPro_price() {
+		return pro_price;
+	}
+	public void setPro_imgName(String pro_imgName) {
+		this.pro_imgName = pro_imgName;
+	}
+	public void setPro_name(String pro_name) {
+		this.pro_name = pro_name;
+	}
+	public void setPro_price(int pro_price) {
+		this.pro_price = pro_price;
+	}
 	public int getCart_num() {
 		return cart_num;
 	}

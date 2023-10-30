@@ -13,7 +13,7 @@ public static Connection getConnection() throws SQLException, ClassNotFoundExcep
 			Class.forName("com.mysql.cj.jdbc.Driver"); 
 			String url = "jdbc:mysql://localhost:3306/projectDB";
 			String user = "root";
-			String password = "5637";
+			String password = "@Seoulit1004";
 			conn = DriverManager.getConnection(url,user,password);		
 		}catch(SQLException sqle){
 			System.out.println("DBConnection:SQLException");

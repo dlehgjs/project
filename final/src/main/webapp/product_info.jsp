@@ -49,7 +49,7 @@ String pro_pdate=pbean.getPro_pdate();
 <%@ include file="user_login_top1.jsp"%>
 <%} %>
 	<div class = "product-detail">
-	<img src="<%=request.getContextPath()%>/upfile/<%=pro_imgName%>">
+	<img src="<%=request.getContextPath()%>/upfile/<%=pro_imgName%> "width="500" height="600"/>
 		<div class = "order-group">
 		<h1><%=pro_num%></h1>
 		<h1><%=pro_name%></h1>
@@ -61,7 +61,7 @@ String pro_pdate=pbean.getPro_pdate();
 			<%} %>
 			<input type="hidden" name="pro_num" value="<%=pro_num%>">
 			<input type="number" name="cart_amount" min="1" max="100" value="1">
-			<input type="submit">
+			<input type="submit" value="장바구니에 담기">
 		</form>
 		<%}else{ %>
 			<span>품절</span>
