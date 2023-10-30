@@ -42,6 +42,7 @@
  		<th>가격</th>
  		<th>수량</th>
  		<th>합계가격</th>
+ 		<th>삭제</th>
  	</tr>
 	<%
 	for(Cartbean cbean : list){
@@ -62,8 +63,9 @@
  		<td><img src="<%=request.getContextPath()%>/upfile/<%=pro_imgName%>" width="50" height="30"/></td>
  		<td><%=pro_name %></td>
  		<td><%=pro_price %></td>
- 		<td><%=cart_amount %></td>
+ 		<td><input type="number" name="cart_amount" min="1" max="100" value="<%=cart_amount %>"></td>
  		<td><%=sum_price %></td>
+ 		<td><a href="cart_del.jsp?cart_num=<%=cart_num%>">삭제</a></td>
  	</tr>
 	<% 		
 	}		

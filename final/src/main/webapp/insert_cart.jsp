@@ -15,10 +15,18 @@
 <%
 request.setCharacterEncoding("utf-8");
 //한글 처리
+String mnum = String.valueOf(session.getAttribute("mem_num"));
+
+if(mnum == "null"){
+	
+	out.println("asdf");
+	
+}
 
 int mem_num = Integer.parseInt(request.getParameter("mem_num"));
 int pro_num = Integer.parseInt(request.getParameter("pro_num"));
 int cart_amount = Integer.parseInt(request.getParameter("cart_amount"));
+
 
 cbean.setMem_num(mem_num);
 cbean.setPro_num(pro_num);
@@ -27,6 +35,7 @@ cbean.setCart_amount(cart_amount);
 CartDAO cdao = new CartDAO();
 
 int getCart = cdao.insertCart(cbean);
+
 %>
 
 <script>

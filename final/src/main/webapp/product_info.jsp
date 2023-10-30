@@ -39,8 +39,10 @@ String pro_hot=pbean.getPro_hot();
 String pro_new=pbean.getPro_new();
 String pro_display=pbean.getPro_display();
 String pro_pdate=pbean.getPro_pdate();
+	
 
 %>
+
 <div class = "main_wrap">
 
 <%if(userID == null){%>
@@ -55,14 +57,18 @@ String pro_pdate=pbean.getPro_pdate();
 		<h1><%=pro_name%></h1>
 		<h1><%=pro_price %></h1>
 		<%if(pro_stock > 0){%>
-		<form action="insert_cart.jsp" method="post">
-			<%if(mem_num != null){ %>
-			<input type="hidden" name="mem_num" value="<%=mem_num%>">
-			<%} %>
-			<input type="hidden" name="pro_num" value="<%=pro_num%>">
-			<input type="number" name="cart_amount" min="1" max="100" value="1">
-			<input type="submit" value="장바구니에 담기">
-		</form>
+			 
+			<form action="insert_cart.jsp" method="post">			
+				<input type="hidden" name="pro_num" value="<%=pro_num%>">
+				<input type="number" name="cart_amount" min="1" max="100" value="1">
+				<input type="hidden" name="mem_num" value="<%=mem_num%>">
+				
+				<%if(mem_num=="null") {%>
+				<button type="button"><a href="user_login.jsp">장바구니담기</a></button>
+				<%}else{ %>
+				<input type="submit" value="장바구니담기">
+				<%} %>				
+			</form>
 		<%}else{ %>
 			<span>품절</span>
 		<%} %>

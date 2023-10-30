@@ -25,7 +25,7 @@ String mem_num = String.valueOf(session.getAttribute("mem_num"));
 <%}else{ %>
 <%@ include file="user_login_top1.jsp"%>
 <%} %>
-
+	<img src="image/milky-way-2695569_1920.jpg" class="img-fluid" alt="...">
 	<nav class="nav nav-pills flex-column flex-sm-row">
 		  <a class="flex-sm-fill text-sm-center nav-link active" aria-current="page" href="user_main1.jsp">전체상품</a>
 		  <a class="flex-sm-fill text-sm-center nav-link" href="user_main2.jsp">인기상품</a>
