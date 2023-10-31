@@ -26,5 +26,8 @@ request.setCharacterEncoding("utf-8");
 	int del = cdao.deleteCart(cart_num);
 
 %>
+<script >
+	location.href="user_cart.jsp";
+</script>
 </body>
 </html>

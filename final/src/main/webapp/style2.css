@@ -109,7 +109,9 @@
     display: flex;
     justify-content: flex-end;
     margin-top: 25px;
-    margin-right: 5px
+    margin-right: 5px;
+    width: 350px;
+   	
 }
 
 .nav {
@@ -134,12 +136,14 @@
 }
 .h_button {
     margin-left: 20px;
+    
 }
+
 
 .h_group > .h_button > .btn {
 
     font-weight: bold;
-
+	font-size: 12px;
 }
 
 .search_area{
@@ -207,5 +211,14 @@
 	width: 1280px;
 	margin: auto;
 	display: flex;
+	
+}
+
+.cart_wrap > table {
+	
+	width:1280px;
+	margin: auto;
+	
+	
 	
 }

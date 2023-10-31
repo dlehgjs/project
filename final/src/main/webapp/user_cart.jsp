@@ -16,6 +16,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
+<script>
+function goOrder(){
+	location.href="user_order.jsp";
+}
+</script>
 <%
 	String userID = (String) session.getAttribute("mem_id");
 	int mnum = (int) session.getAttribute("mem_num");
@@ -71,9 +76,13 @@
 	}		
 	%>
 	</table>
-	<h3><%=order_price %></h3>
-	<button type="button" class="btn btn-dark">주문하기</button>
-</div>
+	<form action="user_order.jsp" method="post">
+		<input type="hidden" name="mem_num" value="<%=mnum%>">
+		<input type="hidden" name="order_price" value="<%=order_price%>">
+		<input type="submit" value="주문하기" onclick=goOrder()>
+	</form>
+	</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </div>
