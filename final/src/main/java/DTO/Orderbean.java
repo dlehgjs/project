@@ -3,7 +3,7 @@ package DTO;
 public class Orderbean {
 
 	private int order_num;
-	private int order_code;
+	private String order_code;
 	private int mem_num;
 	private String order_name;
 	private String order_phoneNum;
@@ -11,11 +11,12 @@ public class Orderbean {
 	private String order_type;
 	private String order_parcel;
 	private int order_postCode;
+	private String order_addr2;
 	
 	public int getOrder_num() {
 		return order_num;
 	}
-	public int getOrder_code() {
+	public String getOrder_code() {
 		return order_code;
 	}
 	public int getMem_num() {
@@ -30,6 +31,9 @@ public class Orderbean {
 	public String getOrder_addr() {
 		return order_addr;
 	}
+	public String getOrder_addr2() {
+		return order_addr2;
+	}
 	public String getOrder_type() {
 		return order_type;
 	}
@@ -42,7 +46,7 @@ public class Orderbean {
 	public void setOrder_num(int order_num) {
 		this.order_num = order_num;
 	}
-	public void setOrder_code(int order_code) {
+	public void setOrder_code(String order_code) {
 		this.order_code = order_code;
 	}
 	public void setMem_num(int mem_num) {
@@ -56,6 +60,10 @@ public class Orderbean {
 	}
 	public void setOrder_addr(String order_addr) {
 		this.order_addr = order_addr;
+	}
+	
+	public void setOrder_addr2(String order_addr2) {
+		this.order_addr2 = order_addr2;
 	}
 	public void setOrder_type(String order_type) {
 		this.order_type = order_type;

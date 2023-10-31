@@ -19,10 +19,37 @@
 </head>
 <body>
 <%
-	String userID = (String) session.getAttribute("mem_id");
-	int mem_num = Integer.parseInt(request.getParameter("mem_num"));
-	int order_price = Integer.parseInt(request.getParameter("order_price"));
 
+request.setCharacterEncoding("utf-8");
+
+	String userID = (String) session.getAttribute("mem_id");
+	int order_price = Integer.parseInt(request.getParameter("order_price"));
+	
+	int mem_num = Integer.parseInt(request.getParameter("mem_num"));
+	String order_name = request.getParameter("order_name");
+	String order_phoneNum = request.getParameter("order_phoneNum");
+	String order_addr = request.getParameter("order_addr");
+	String order_addr2 = request.getParameter("order_addr2");
+	int order_postCode = Integer.parseInt(request.getParameter("order_postCode"));
+	
+	
+	Orderutil ou = new Orderutil();
+	OrderDAO odao = new OrderDAO();
+	
+	String order_code = ou.getOrderCode();
+	String order_type[] = ou.getOrderStatus();
+
+	obean.setOrder_code(order_code);
+	obean.setMem_num(mem_num);
+	obean.setOrder_name(order_name);
+	obean.setOrder_postCode(order_postCode);	
+	obean.setOrder_phoneNum(order_phoneNum);
+	obean.setOrder_addr(order_addr);
+	obean.setOrder_addr2(order_addr2);
+	obean.setOrder_type(order_type[0]);
+	
+	int order = odao.OrderOk(obean);
+	
 %>
 
 <div class = "main_wrap">
@@ -33,16 +60,6 @@
 <%} %>    
 <div class = "order_wrap">
 <%
-	Orderutil ou = new Orderutil();
-	OrderDAO odao = new OrderDAO();
-	ArrayList<Orderbean> olist = odao.userOrderList(mem_num);
-	
-	obean.setOrder_code(ou.getOrderCode());
-	obean.setMem_num(mem_num);
-	obean.setOrder_name(order_name);
-	obean.setOrder_phoneNum(order_phoneNum);
-	obean.setOrder_addr(order_addr);
-	obean.setOrder_type(ou.getOrderStatus());
 
 
 %>

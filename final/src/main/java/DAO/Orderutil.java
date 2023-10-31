@@ -25,20 +25,11 @@ public static String getOrderCode() {
 		return ordercode;
 	}
 
-public static String ranCookie() {
+public static String[] getOrderStatus() {
 	
-    int leftLimit = 48; // numeral '0'
-    int rightLimit = 122; // letter 'z'
-    int targetStringLength = 10;
-    Random random = new Random();
-    String generatedString = random.ints(leftLimit, rightLimit + 1)
-                                   .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
-                                   .limit(targetStringLength)
-                                   .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                                   .toString();
-    
-    
-    return generatedString;
-  }
+	String[] ostatus = new String[] {"주문완료", "결재완료", "배송중", "배송완료", "주문취소", "환불완료"};
+	return ostatus;		
+
+	}
 	
 }
