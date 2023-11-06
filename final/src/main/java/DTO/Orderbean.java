@@ -12,7 +12,14 @@ public class Orderbean {
 	private String order_parcel;
 	private int order_postCode;
 	private String order_addr2;
+	private String order_date;
 	
+	public String getOrder_date() {
+		return order_date;
+	}
+	public void setOrder_date(String order_date) {
+		this.order_date = order_date;
+	}
 	public int getOrder_num() {
 		return order_num;
 	}

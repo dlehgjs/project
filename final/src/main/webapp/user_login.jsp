@@ -21,9 +21,11 @@
 		<span class = "logo_2">HOUSE</span>
 	</div>
 	<form action="user_login_ok.jsp" class = "login_form">
+		<span>아이디</span>
 		<input class="form-control" type="text" name="mem_id">
+		<span>비밀번호</span>
 		<input class="form-control" type="password" name="mem_pwd">
-		<input class="form-control" type="submit">
+		<input class="form-control" type="submit" value="로그인">
 	</form>
 </div>
 

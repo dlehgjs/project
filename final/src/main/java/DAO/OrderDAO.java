@@ -50,6 +50,7 @@ public class OrderDAO {
 				obean.setOrder_type(rs.getString("order_type"));
 				obean.setOrder_parcel(rs.getString("order_parcel"));
 				obean.setOrder_postCode(rs.getInt("order_postCode"));
+				obean.setOrder_date(rs.getString("order_date"));
 				
 				list.add(obean);
 			}
@@ -90,7 +91,7 @@ public ArrayList<Orderbean> userOrderList(int mem_num){
 			String sql = null;
 			
 		
-				sql = "select order_code, order_name, order_phoneNum, order_addr, order_type, order_parcel, order_postCode from orderTbl where mem_num ="+mem_num;		
+				sql = "select * from orderTbl where mem_num ="+mem_num;		
 			
 
 			stmt = conn.createStatement();
@@ -100,15 +101,18 @@ public ArrayList<Orderbean> userOrderList(int mem_num){
 			while(rs.next()) { // 행단위로 읽어옴
 				// bean 객체에 할당
 				Orderbean obean = new Orderbean();
+				
 				obean.setOrder_num(rs.getInt("order_num"));
 				obean.setOrder_code(rs.getString("order_code"));
 				obean.setMem_num(rs.getInt("mem_num"));
 				obean.setOrder_name(rs.getString("order_name"));
 				obean.setOrder_phoneNum(rs.getString("order_phoneNum"));
 				obean.setOrder_addr(rs.getString("order_addr"));
+				obean.setOrder_addr2(rs.getString("order_addr2"));
 				obean.setOrder_type(rs.getString("order_type"));
 				obean.setOrder_parcel(rs.getString("order_parcel"));
 				obean.setOrder_postCode(rs.getInt("order_postCode"));
+				obean.setOrder_date(rs.getString("order_date"));
 				
 				list.add(obean);
 			}
@@ -147,7 +151,7 @@ public int OrderOk(Orderbean obean) {
 
 		con = DBcon.getConnection();
 		
-		String sql = "INSERT INTO orderTbl(order_code, mem_num, order_name, order_phoneNum, order_addr, order_addr2, order_type, order_postCode) VALUES(?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO orderTbl(order_code, mem_num, order_name, order_phoneNum, order_addr, order_addr2, order_type, order_postCode) VALUES(?,?,?,?,?,?,?,?,NOW())";
 		pstmt = con.prepareStatement(sql);
 		
 		pstmt.setString(1, obean.getOrder_code());
@@ -158,6 +162,7 @@ public int OrderOk(Orderbean obean) {
 		pstmt.setString(6, obean.getOrder_addr2());
 		pstmt.setString(7, obean.getOrder_type());
 		pstmt.setInt(8, obean.getOrder_postCode());
+		pstmt.setString(9, obean.getOrder_date());
 		
 		rs = pstmt.executeUpdate();
 

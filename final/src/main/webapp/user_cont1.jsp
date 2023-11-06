@@ -15,7 +15,7 @@ ArrayList<Productbean> list = pdao.userItemList(search);
 
 <div class="container text-center">
 	
-	<div class="row row-cols-5">
+	<div class="row row-cols-4">
    		<%
 				
 				

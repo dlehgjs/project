@@ -36,21 +36,24 @@ request.setCharacterEncoding("utf-8");
 
 <div class = "main_wrap">
 <%if(userID == null){%>
-<%@ include file="user_top1.jsp"%>
+<%@ include file="user_top2.jsp"%>
 <%}else{ %>
-<%@ include file="user_login_top1.jsp"%>
+<%@ include file="user_login_top2.jsp"%>
 <%} %>    
 <div class = "cart_wrap">
-
-	<table class="table table-striped">
-	<tr>
- 		<th>상품이미지</th>
- 		<th>상품명</th>
- 		<th>가격</th>
- 		<th>수량</th>
- 		<th>합계가격</th>
- 		<th>삭제</th>
- 	</tr>
+	<div class = "sub_nav">
+		<h3>마이페이지</h3>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+	</div>
+	
+	<div class = "cart_col">
+		<h3>장바구니</h3>
+		<div class = "cart_list">
+			<ul>
 	<%
 	for(Cartbean cbean : list){
 		
@@ -66,18 +69,28 @@ request.setCharacterEncoding("utf-8");
 		sum_price = pro_price * cart_amount;
 		order_price += sum_price;
 	%>
-	<tr>
- 		<td><img src="<%=request.getContextPath()%>/upfile/<%=pro_imgName%>" width="50" height="30"/></td>
- 		<td><%=pro_name %></td>
- 		<td><%=pro_price %></td>
- 		<td><input type="number" name="cart_amount" min="1" max="100" value="<%=cart_amount %>"></td>
- 		<td><%=sum_price %></td>
- 		<td><a href="cart_del.jsp?cart_num=<%=cart_num%>">삭제</a></td>
- 	</tr>
+			<li >
+				<div class = "cart_product">
+					<img src="<%=request.getContextPath()%>/upfile/<%=pro_imgName%>" width="100" height="70"/>
+					<div class = "cart_product_detail">
+						<p><%=pro_name %></p>
+						<p>수량 : <%=cart_amount %></p>
+					</div>
+					<div class = "delete_button">
+					<a class="btn btn-danger" href="cart_del.jsp?cart_num=<%=cart_num %>" role="button">삭제</a>
+					</div>
+				</div>
+			</li>
+	
+	
+	
 	<% 		
 	}		
 	%>
-	</table>
+			</ul>
+		</div>
+	</div>
+	<!-- 장바구니 정보 주문으로 넘겨주기
 	<form action="user_orderOk.jsp" method="post">
 		<input type="hidden" name="mem_num" value="<%=mnum%>">
 		<input type="hidden" name="order_price" value="<%=order_price%>">
@@ -88,7 +101,7 @@ request.setCharacterEncoding("utf-8");
 		<input type="text" name="order_addr" id="sample6_address" placeholder="주소"><br>
 		<input type="text" name="order_addr2" id="sample6_detailAddress" placeholder="주소"><br>
 		<input type="submit" value="주문하기" onclick=goOrder()>
-	</form>
+	</form>-->
 	</div>
 
 

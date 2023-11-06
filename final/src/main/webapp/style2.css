@@ -9,6 +9,12 @@
     font-family: 'Noto Sans KR', sans-serif;
 }
 
+ul {
+	
+	padding-left: 0 !important;
+	
+}
+
 .main_wrap {
 	
 	margin: auto;
@@ -62,15 +68,9 @@
     height: 100px;
     margin: auto;
     padding-top: 0 !important;
-	border-bottom: 1px solid;
    
 }
 
-.navbar > .logo {
-
-    margin-left: 5px;
-
-}
 .navbar > .logo > .logo_1 {
 
     font-size: 3rem;
@@ -94,6 +94,7 @@
 
     font-size: 3rem;
     font-weight: bold;
+    margin-left: 60px;
 
 }
 
@@ -109,7 +110,6 @@
     display: flex;
     justify-content: flex-end;
     margin-top: 25px;
-    margin-right: 5px;
     width: 350px;
    	
 }
@@ -201,11 +201,27 @@
 	
 	display: flex;
 	flex-direction: column;
-	width: 1280px;
+	width: 600px;
 	margin: auto;
 	
 }
 
+.login_form > span {
+	
+	font-weight: bold;
+	
+	
+}
+
+.login_form > input {
+	
+	height: 60px;
+	font-size: 20px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+	border-radius: 10px;
+	
+}
 .product-detail {
 	
 	width: 1280px;
@@ -213,12 +229,102 @@
 	display: flex;
 	
 }
+.cart_wrap {
+	
+	display: flex;
+	justify-content: center;
+}
 
-.cart_wrap > table {
 	
-	width:1280px;
-	margin: auto;
+.product-image {
 	
+	width: 600px;
+	border-right: 1px solid;
+}	
+
+
+.product-image > img{
+	
+	margin-top: 25px;
+	width: 550px;
+	height: 600px;
+	
+}
+
+.order-group {
+	
+	margin-top: 25px;
+	margin-left: 50px;
+	width: 600px;
+	
+}
+
+.sub_nav {
+	
+	display: flex;
+	flex-direction: column;
+	width: 180px;
 	
 	
 }
+
+.sub_nav > h3 {
+	
+	font-weight: bold !important;
+	
+}
+
+.cart_col {
+	
+	margin-left: 60px;
+	width: 1040px;
+	
+}
+
+.cart_col > h3 {
+	
+	height: 50px;
+	border-bottom: 3px solid;
+	font-weight: bold !important;
+	
+}
+
+.cart_product {
+	
+	display: flex;
+	height: 100px;
+	align-items: center;
+	border-bottom: 1px solid;
+	justify-content: space-between;
+
+}
+
+.cart_product > .cart_product_detail {
+	
+	display: flex;
+	flex-direction: column;
+	margin-right: 700px;
+}
+
+.cart_product > .cart_product_detail > p{
+	
+	font-size: 18px;
+	font-weight: 600;
+	height: 35px;
+	margin-top: 0;
+	margin-bottom: 5px;
+}
+
+.cart_product > .delete_button {
+	
+	display: flex;
+	justify-content: flex-end;
+	
+}
+
+.cart_product > .delete_button > .btn {
+	
+	width: 80px;
+	
+}
+

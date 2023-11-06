@@ -3,6 +3,7 @@
 <%@ page import="DTO.Productbean"%>
 <%@ page import="DAO.ProductDAO"%>
 <%@ page import="DAO.Orderutil"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,33 +47,34 @@ String pro_pdate=pbean.getPro_pdate();
 <div class = "main_wrap">
 
 <%if(userID == null){%>
-<%@ include file="user_top1.jsp"%>
+<%@ include file="user_top2.jsp"%>
 <%}else{ %>
-<%@ include file="user_login_top1.jsp"%>
+<%@ include file="user_login_top2.jsp"%>
 <%} %>
 	<div class = "product-detail">
-	<img src="<%=request.getContextPath()%>/upfile/<%=pro_imgName%> "width="500" height="600"/>
-		<div class = "order-group">
-		<h1><%=pro_num%></h1>
-		<h1><%=pro_name%></h1>
-		<h1><%=pro_price %></h1>
-		<%if(pro_stock > 0){%>
-			 
-			<form action="insert_cart.jsp" method="post">			
-				<input type="hidden" name="pro_num" value="<%=pro_num%>">
-				<input type="number" name="cart_amount" min="1" max="100" value="1">
-				<input type="hidden" name="mem_num" value="<%=mem_num%>">
-				
-				<%if(mem_num=="null") {%>
-				<button type="button"><a href="user_login.jsp">장바구니담기</a></button>
-				<%}else{ %>
-				<input type="submit" value="장바구니담기">
-				<%} %>				
-			</form>
-		<%}else{ %>
-			<span>품절</span>
-		<%} %>
+		<div class = "product-image">
+			<img src="<%=request.getContextPath()%>/upfile/<%=pro_imgName%> "/>
 		</div>
+			<div class = "order-group">
+			<h1><%=pro_name%></h1>	
+			<h1><fmt:formatNumber type="currency" value="<%=pro_price%>" />원</h1>
+			<%if(pro_stock > 0){%>
+				 
+				<form action="insert_cart.jsp" method="post">			
+					<input type="hidden" name="pro_num" value="<%=pro_num%>">
+					<input type="number" name="cart_amount" min="1" max="100" value="1">
+					<input type="hidden" name="mem_num" value="<%=mem_num%>">
+					
+					<%if(mem_num=="null") {%>
+					<button type="button"><a href="user_login.jsp">장바구니담기</a></button>
+					<%}else{ %>
+					<input type="submit" value="장바구니담기" class="form-control">
+					<%} %>				
+				</form>
+			<%}else{ %>
+				<span>품절</span>
+			<%} %>
+			</div>
 	</div>
 
 	

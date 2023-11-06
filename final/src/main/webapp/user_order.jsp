@@ -4,7 +4,6 @@
 <%@ page import="DAO.OrderDAO"%>
 <%@ page import="DAO.Orderutil"%>
 <%@ page import="java.util.ArrayList"%>
-<jsp:useBean id="obean" class="DTO.Orderbean"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,33 +18,62 @@
 </head>
 <body>
 <%
+	
+	
 	String userID = (String) session.getAttribute("mem_id");
-	int mem_num = Integer.parseInt(request.getParameter("mem_num"));
-	int order_price = Integer.parseInt(request.getParameter("order_price"));
+	int mem_num = (int) session.getAttribute("mem_num");
 
-%>
-
-<div class = "main_wrap">
-<%if(userID == null){%>
-<%@ include file="user_top1.jsp"%>
-<%}else{ %>
-<%@ include file="user_login_top1.jsp"%>
-<%} %>    
-<div class = "order_wrap">
-<%
+	
 	Orderutil ou = new Orderutil();
 	OrderDAO odao = new OrderDAO();
 	ArrayList<Orderbean> olist = odao.userOrderList(mem_num);
 	
-	obean.setOrder_code(ou.getOrderCode());
-	obean.setMem_num(mem_num);
-	obean.setOrder_name(order_name);
-	obean.setOrder_phoneNum(order_phoneNum);
-	obean.setOrder_addr(order_addr);
-	obean.setOrder_type(ou.getOrderStatus());
-
-
+	
 %>
+
+<div class = "main_wrap">
+<%if(userID == null){%>
+<%@ include file="user_top2.jsp"%>
+<%}else{ %>
+<%@ include file="user_login_top2.jsp"%>
+<%} %>    
+<div class = "order_wrap">
+<div class = "order_cont_wrap">
+		<table class = "table table-bordered">
+			<tr>
+				<th>상품정보</th>
+				<th>주문일자</th>
+				<th>주문번호</th>
+				<th>주문금액</th>
+				<th>주문상태</th>
+			</tr>
+		
+<%
+	for(Orderbean obean : olist){
+		
+		String order_code = obean.getOrder_code();
+		String order_name = obean.getOrder_name();
+		String order_phoneNum = obean.getOrder_phoneNum();
+		String order_addr = obean.getOrder_addr();
+		String order_addr2 = obean.getOrder_addr2();
+		String order_type = obean.getOrder_type();
+		String order_parcel = obean.getOrder_parcel();
+		int order_postCode = obean.getOrder_postCode();
+%>
+			<tr>
+				<td><%=order_name%></td>
+				<td><%=order_phoneNum%></td>
+				<td><%=order_code%></td>
+				<td><%=order_parcel%></td>	
+				<td><%=order_type%></td>
+			</tr>
+
+
+<% 
+	}
+%>
+	</table>	
+</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </div>
