@@ -3,6 +3,7 @@
 <%@ page import="DTO.Productbean"%>
 <%@ page import="DAO.ProductDAO"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%
 String search = "";
 if(request.getParameter("search")!=null)
@@ -13,7 +14,7 @@ ArrayList<Productbean> list = pdao.userItemList(search);
 
 %>
 
-<div class="container text-center">
+<div class="cont_wrap">
 	
 	<div class="row row-cols-4">
    		<%
@@ -30,18 +31,18 @@ ArrayList<Productbean> list = pdao.userItemList(search);
 			String pro_new=pbean.getPro_new();
 			String pro_display=pbean.getPro_display();
 			String pro_pdate=pbean.getPro_pdate();
-			%>
-		
+		%>
 		<div class="col">
-			<div class="card" style="width: 11rem;" onclick='window.location.href="product_info.jsp?pro_num=<%=pro_num%>"'>
-			  <img src="<%=request.getContextPath()%>/upfile/<%=pro_imgName%>" class="card-img-top" alt="...">
-			  <div class="card-body">
-			    <h5 class="card-title"><%=pro_name%></h5>
-			    <p class="card-text"><%=pro_price%></p>
-			  </div>
+			<div class="card_img" onclick='window.location.href="product_info.jsp?pro_num=<%=pro_num%>"'>
+				<img src="<%=request.getContextPath()%>/upfile/<%=pro_imgName%>" class="card-img-top" alt="...">			
 			</div>
-		</div>	<%
-				}
+			<div class="card_detail">
+				<p><%=pro_name%></p>
+				<p><fmt:formatNumber type="currency" value="<%=pro_price%>" />원</p>
+			</div>
+		</div>		
+		<%
+		}
 		%>		
   </div>
 </div>

@@ -3,6 +3,7 @@
 <%@ page import="DTO.Cartbean"%>
 <%@ page import="DAO.CartDAO"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,24 +77,41 @@ request.setCharacterEncoding("utf-8");
 						<p><%=pro_name %></p>
 						<p>수량 : <%=cart_amount %></p>
 					</div>
+					<div class = "cart_price">
+						<p><fmt:formatNumber type="currency" value="<%=sum_price%>" />원</p>
+					</div>
 					<div class = "delete_button">
 					<a class="btn btn-danger" href="cart_del.jsp?cart_num=<%=cart_num %>" role="button">삭제</a>
 					</div>
 				</div>
 			</li>
 	
-	
-	
 	<% 		
 	}		
 	%>
 			</ul>
+			<div class = "cart_order">
+				<p>총 주문금액 : <fmt:formatNumber type="currency" value="<%=order_price%>" />원</p>
+				<a class="btn btn-danger" href="#" role="button">장바구니 비우기</a>
+			</div>
+			<hr>
+			<div class = "order_addr">
+				<h2>배송정보입력</h2>
+				<form action="user_orderOk.jsp" method="post">
+					<input type="hidden" name="mem_num" value="<%= mnum%>">
+					<input type="text" name="order_name" value="배송자명">
+					<input type="text" name="order_phoneNum" value="배송자전화번호">
+					<input type="text" name="order_postCode" id="sample6_postcode" placeholder="우편번호">
+					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+					<input type="text" name="order_addr" id="sample6_address" placeholder="주소"><br>
+					<input type="text" name="order_addr2" id="sample6_detailAddress" placeholder="주소"><br>
+					<input type="submit" value="주문하기" onclick=goOrder()>
+				</form>
+			</div>				
 		</div>
 	</div>
 	<!-- 장바구니 정보 주문으로 넘겨주기
 	<form action="user_orderOk.jsp" method="post">
-		<input type="hidden" name="mem_num" value="<%=mnum%>">
-		<input type="hidden" name="order_price" value="<%=order_price%>">
 		<input type="text" name="order_name" value="배송자명">
 		<input type="text" name="order_phoneNum" value="배송자전화번호">
 		<input type="text" name="order_postCode" id="sample6_postcode" placeholder="우편번호">
