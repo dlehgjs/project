@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import DBcon.DBcon;
+import DTO.Cartbean;
 import DTO.Orderbean;
+import DTO.Hisbean;
 
 public class OrderDAO {
 
@@ -151,7 +153,7 @@ public int OrderOk(Orderbean obean) {
 
 		con = DBcon.getConnection();
 		
-		String sql = "INSERT INTO orderTbl(order_code, mem_num, order_name, order_phoneNum, order_addr, order_addr2, order_type, order_postCode) VALUES(?,?,?,?,?,?,?,?,NOW())";
+		String sql = "INSERT INTO orderTbl(order_code, mem_num, order_name, order_phoneNum, order_addr, order_addr2, order_type, order_postCode , order_date) VALUES(?,?,?,?,?,?,?,?,NOW())";
 		pstmt = con.prepareStatement(sql);
 		
 		pstmt.setString(1, obean.getOrder_code());
@@ -162,7 +164,6 @@ public int OrderOk(Orderbean obean) {
 		pstmt.setString(6, obean.getOrder_addr2());
 		pstmt.setString(7, obean.getOrder_type());
 		pstmt.setInt(8, obean.getOrder_postCode());
-		pstmt.setString(9, obean.getOrder_date());
 		
 		rs = pstmt.executeUpdate();
 
@@ -184,9 +185,63 @@ public int OrderOk(Orderbean obean) {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
+	
 	return rs;	
 }
+	
+public int insertOrderList(int mnum,String order_code) {
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	int rs = 0;
+	
+
+	try {
+
+		con = DBcon.getConnection();
 		
+		CartDAO cdao = new CartDAO();
+		ArrayList<Cartbean> list = cdao.getCartList(mnum);
+		
+		
+		String sql = "INSERT INTO orderHis (order_code, pro_num, his_amount, his_price) VALUES (?,?,?,?)";
+		pstmt = con.prepareStatement(sql);
+		
+		for(Cartbean cbean : list) {	
+			
+			pstmt.setString(1, order_code);
+			pstmt.setInt(2, cbean.getPro_num());
+			pstmt.setInt(3, cbean.getCart_amount());
+			pstmt.setInt(4, cbean.getPro_price());
+			
+			
+		}
+
+		
+		rs = pstmt.executeUpdate();
+
+		System.out.println("orderTbl 데이터 등록이 "+rs+" 성공했습니다.");
+	} catch (SQLException ex) {
+		System.out.println("orderTbl 등록이 실패했습니다.");
+		System.out.println("SQLException: " + ex.getMessage());
+		throw new RuntimeException(ex.getMessage());
+	} catch(ClassNotFoundException cnfe){
+		System.out.println("DBConnection:ClassNotFoundException");
+		throw new RuntimeException(cnfe.getMessage());
+	} finally {
+		
+		try{
+			if ( pstmt != null ){ pstmt.close(); pstmt=null; }
+			if ( con != null ){ con.close(); con=null;	}
+		}catch(Exception e){
+			System.out.println("SQLException: " + e.getMessage());
+			throw new RuntimeException(e.getMessage());
+		}
+	}
+	
+	
+	return rs;
+}
 		
 	
 }

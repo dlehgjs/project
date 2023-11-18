@@ -46,7 +46,7 @@ request.setCharacterEncoding("utf-8");
 		<h1>주문하기</h1>
 	</div>
 	<hr>
-	<div class = "cart_list">
+	<div class = "order_list">
 		<ul>
 	<%
 	for(Cartbean cbean : list){
@@ -73,9 +73,6 @@ request.setCharacterEncoding("utf-8");
 					<div class = "cart_price">
 						<p><fmt:formatNumber type="currency" value="<%=sum_price%>" />원</p>
 					</div>
-					<div class = "delete_button">
-					<a class="btn btn-danger" href="cart_del.jsp?cart_num=<%=cart_num %>" role="button">삭제</a>
-					</div>
 				</div>
 			</li>
 	
@@ -89,15 +86,18 @@ request.setCharacterEncoding("utf-8");
 	</div>
 	<hr>
 	<div class = "order_addr">
-		<h2>배송정보입력</h2>
+		<h2>주문자 정보</h2>
 		<form action="user_orderOk.jsp" method="post">
-		<input type="text" name="order_name" value="배송자명">
-		<input type="text" name="order_phoneNum" value="배송자전화번호">
+		<input type="hidden" name="order_price" value="<%=order_price %>">
+		<input type="hidden" name="mem_num" value="<%=mnum%>">
+		이름 : <input type="text" name="order_name" value="배송자명"></br>
+		전화번호 : <input type="text" name="order_phoneNum" value="배송자전화번호">
+		<h2>배송지</h2>
 		<input type="text" name="order_postCode" id="sample6_postcode" placeholder="우편번호">
 		<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 		<input type="text" name="order_addr" id="sample6_address" placeholder="주소"><br>
 		<input type="text" name="order_addr2" id="sample6_detailAddress" placeholder="주소"><br>
-		<input type="submit" value="주문하기" onclick=goOrder()>
+		<input class="btn btn-danger" type="submit" value="주문하기" onclick=goOrder()>
 	</form>
 	</div>	
 	

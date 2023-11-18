@@ -263,5 +263,46 @@ public class CartDAO {
 		return rs;
 		
 		}
+	
+public int deleteAllCart(String mem_num){
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		int rs = 0;
+		
+		try {
+			
+			con = DBcon.getConnection();
+			
+			String sql = "DELETE FROM cart where mem_num ='"+mem_num+"'";
+			
+			pstmt = con.prepareStatement(sql);
+
+			rs = pstmt.executeUpdate();
+			
+			System.out.println("member 데이터 삭제가 "+rs+" 성공했습니다.");
+		} catch (SQLException ex) {
+			System.out.println("member 데이터 삭제가 실패했습니다.<br>");
+			System.out.println("SQLException: " + ex.getMessage());
+		}catch(ClassNotFoundException cnfe){
+			System.out.println("DBConnection:ClassNotFoundException");
+			throw new RuntimeException(cnfe.getMessage());
+		}
+		 finally {
+				
+			try{
+				if ( pstmt != null ){ pstmt.close(); pstmt=null; }
+				if ( con != null ){ con.close(); con=null;	}
+			}catch(Exception e){
+				System.out.println("SQLException: " + e.getMessage());
+				throw new RuntimeException(e.getMessage());
+			}
+		
+		 }
+		
+		return rs;
+		
+	}
 
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="DTO.Orderbean"%>
+<%@ page import="DTO.Hisbean"%>
 <%@ page import="DAO.OrderDAO"%>
 <%@ page import="DAO.Orderutil"%>
 <%@ page import="java.util.ArrayList"%>
@@ -26,6 +27,7 @@
 	
 	Orderutil ou = new Orderutil();
 	OrderDAO odao = new OrderDAO();
+	
 	ArrayList<Orderbean> olist = odao.userOrderList(mem_num);
 	
 	

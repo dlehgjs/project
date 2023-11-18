@@ -289,6 +289,13 @@ ul {
 	
 }
 
+
+.order_list , .order_head , .order_group , .order_addr{
+	
+	width: 1280px;
+	margin: auto;
+	
+}
 .cart_product {
 	
 	display: flex;

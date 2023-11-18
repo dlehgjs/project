@@ -47,8 +47,17 @@ request.setCharacterEncoding("utf-8");
 	obean.setOrder_addr(order_addr);
 	obean.setOrder_addr2(order_addr2);
 	obean.setOrder_type(order_type[0]);
+
 	
-	int order = odao.OrderOk(obean);
+	int rs1 = odao.OrderOk(obean);
+	
+	int rs2 = 0;
+	
+	if(rs1 > 0){
+		
+		rs2 = odao.insertOrderList(mem_num, order_code);		
+		
+	}
 	
 %>
 
