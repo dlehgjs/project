@@ -40,17 +40,20 @@
 <%@ include file="user_login_top2.jsp"%>
 <%} %>    
 <div class = "order_wrap">
-<div class = "order_cont_wrap">
-		<table class = "table table-bordered">
-			<tr>
-				<th>상품정보</th>
-				<th>주문일자</th>
-				<th>주문번호</th>
-				<th>주문금액</th>
-				<th>주문상태</th>
-			</tr>
-		
-<%
+	<div class = "sub_nav">
+		<h3>마이페이지</h3>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+	</div>
+	
+	<div class = "olist_col">
+		<h3>주문목록</h3>
+		<div class = "order_list">
+
+	<%
 	for(Orderbean obean : olist){
 		
 		String order_code = obean.getOrder_code();
@@ -61,21 +64,37 @@
 		String order_type = obean.getOrder_type();
 		String order_parcel = obean.getOrder_parcel();
 		int order_postCode = obean.getOrder_postCode();
-%>
-			<tr>
-				<td><%=order_name%></td>
-				<td><%=order_phoneNum%></td>
-				<td><%=order_code%></td>
-				<td><%=order_parcel%></td>	
-				<td><%=order_type%></td>
-			</tr>
-
-
-<% 
-	}
-%>
-	</table>	
-</div>
+	%>
+		<div class = "order_card">
+			<div class = "order_code">
+				<p><%= order_code %></p>
+			</div>
+			<div class = "order_prouct">
+				<%
+				ArrayList<Hisbean> hlist = odao.userOrderItemList(order_code);	
+				
+				for(Hisbean hbean : hlist){
+					
+					int pro_num=hbean.getPro_num();
+					String pro_name=hbean.getPro_name();
+					String pro_img=hbean.getPro_imgName();
+					int his_price=hbean.getHis_price();
+					int his_amount=hbean.getHis_amount();
+					
+					out.println(pro_num);
+					out.println(pro_name);
+				}
+				%>
+			</div>
+			
+		
+		</div>
+	
+	<% 		
+	}		
+	%>
+		</div>
+	</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </div>

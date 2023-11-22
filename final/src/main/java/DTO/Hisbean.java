@@ -7,7 +7,21 @@ public class Hisbean {
 	private int pro_num;
 	private int his_amount;
 	private int his_price;
+	private String pro_imgName;
+	private String pro_name;
 	
+	public String getPro_imgName() {
+		return pro_imgName;
+	}
+	public void setPro_imgName(String pro_imgName) {
+		this.pro_imgName = pro_imgName;
+	}
+	public String getPro_name() {
+		return pro_name;
+	}
+	public void setPro_name(String pro_name) {
+		this.pro_name = pro_name;
+	}
 	public int getHis_num() {
 		return his_num;
 	}

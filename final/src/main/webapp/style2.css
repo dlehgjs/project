@@ -229,7 +229,7 @@ ul {
 	display: flex;
 	
 }
-.cart_wrap {
+.cart_wrap , .order_wrap{
 	
 	display: flex;
 	justify-content: center;
@@ -274,14 +274,14 @@ ul {
 	
 }
 
-.cart_col {
+.cart_col , .olist_col{
 	
 	margin-left: 60px;
 	width: 1040px;
 	
 }
 
-.cart_col > h3 {
+.cart_col , .olist_col> h3 {
 	
 	height: 50px;
 	border-bottom: 3px solid;
@@ -290,7 +290,7 @@ ul {
 }
 
 
-.order_list , .order_head , .order_group , .order_addr{
+.order_head , .order_group , .order_addr{
 	
 	width: 1280px;
 	margin: auto;
@@ -369,8 +369,8 @@ ul {
 	
 }
 
-.cart_order > a {
+.order_card > .order_code{
 	
-	
+	border: 1px solid;
 	
 }
