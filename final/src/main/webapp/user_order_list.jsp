@@ -5,6 +5,7 @@
 <%@ page import="DAO.OrderDAO"%>
 <%@ page import="DAO.Orderutil"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +40,7 @@
 <%}else{ %>
 <%@ include file="user_login_top2.jsp"%>
 <%} %>    
-<div class = "order_wrap">
+<div class = "olist_wrap">
 	<div class = "sub_nav">
 		<h3>마이페이지</h3>
 		<ul>
@@ -64,12 +65,17 @@
 		String order_type = obean.getOrder_type();
 		String order_parcel = obean.getOrder_parcel();
 		int order_postCode = obean.getOrder_postCode();
+		String order_date = obean.getOrder_date();
+		
+		String odate = order_date.substring(0,10);
 	%>
 		<div class = "order_card">
 			<div class = "order_code">
-				<p><%= order_code %></p>
+				<p><%=odate %></p>
+				<p>주문번호 <%= order_code %></p>
 			</div>
-			<div class = "order_prouct">
+			<div class = "order_product">
+				<div class="order_product_list">
 				<%
 				ArrayList<Hisbean> hlist = odao.userOrderItemList(order_code);	
 				
@@ -77,17 +83,28 @@
 					
 					int pro_num=hbean.getPro_num();
 					String pro_name=hbean.getPro_name();
-					String pro_img=hbean.getPro_imgName();
+					String pro_imgName=hbean.getPro_imgName();
 					int his_price=hbean.getHis_price();
 					int his_amount=hbean.getHis_amount();
-					
-					out.println(pro_num);
-					out.println(pro_name);
+				%>
+					<ul>
+						<li><img src="<%=request.getContextPath()%>/upfile/<%=pro_imgName%>" width="120" height="90" class="img-thumbnail"/>
+							<div class ="order_product_name"><%=pro_name%></div>
+							<div class ="order_product_price"><fmt:formatNumber type="currency" value="<%=his_price%>" />원</div>
+						</li>
+					</ul>
+
+				<%
 				}
 				%>
+				</div>
+				<div class = "order_list_button">
+					<button type="button" class="btn btn-outline-primary" >배송조회</button>
+					<button type="button" class="btn btn-outline-secondary" >주문상세정보</button>
+				
+				</div>
 			</div>
-			
-		
+
 		</div>
 	
 	<% 		
